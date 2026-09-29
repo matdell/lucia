@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#0B0D0C;color:#EDE6D8;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#EDE6D8;text-decoration:none}a:hover{color:#C9A96E}
+*{box-sizing:border-box}
+input::placeholder{color:#7D7970}
+@keyframes lgMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;overflow:hidden;background:#0B0D0C">
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:20;background:linear-gradient(180deg,rgba(11,13,12,.85),rgba(11,13,12,.35));backdrop-filter:blur(10px);border-bottom:1px solid rgba(237,230,216,.08)">
+  <div style="max-width:1400px;margin:0 auto;padding:16px clamp(20px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:nowrap">
+    <a href="#top" style="display:flex;align-items:baseline;gap:12px;flex:none">
+      <span style="font-family:'Instrument Serif',serif;font-size:27px;letter-spacing:.01em">Lucia Groppa</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E">Real Estate</span>
+    </a>
+    <nav style="flex:0 1 auto;min-width:0;display:flex;gap:clamp(12px,1.8vw,30px);flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:none;font-size:clamp(11px,1.1vw,12px);font-weight:400;letter-spacing:.06em;text-transform:uppercase;line-height:20px">
+      <a href="#help">Buyers</a><a href="#inquiry">Renters</a><a href="#help">Owners</a><a href="#help">Sellers</a><a href="#blog">Journal</a><a href="#about">About</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;flex:none">
+      <div style="display:flex;border:1px solid rgba(237,230,216,.2);border-radius:999px;padding:3px;font-family:'JetBrains Mono',monospace;font-size:11px">
+        <sc-for list="{{ langs }}" as="l" hint-placeholder-count="2">
+          <button onClick="{{ l.pick }}" style="border:0;cursor:pointer;padding:5px 10px;border-radius:999px;font:inherit;background:{{ l.bg }};color:{{ l.fg }}">{{ l.code }}</button>
+        </sc-for>
+      </div>
+      <a href="#contact" style="border:1px solid #C9A96E;color:#C9A96E;padding:10px 16px;border-radius:999px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap" style-hover="background:#C9A96E;color:#0B0D0C">Let's talk</a>
+    </div>
+  </div>
+</header>
+
+<sc-if value="{{ heroFull }}" hint-placeholder-val="{{ true }}">
+<section id="top" style="position:relative;height:100vh;min-height:640px;max-height:1000px">
+  <div style="position:absolute;inset:0"><image-slot id="dk-hero" shape="rect" src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?auto=format&amp;fit=crop&amp;w=2400&amp;q=80" credit="Photo by Muzammil Soorma on Unsplash" credit-href="https://unsplash.com/@muzammilo" placeholder="Miami skyline at night"></image-slot></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,13,12,.6) 0%,rgba(11,13,12,.4) 30%,rgba(11,13,12,.72) 60%,rgba(11,13,12,.94) 100%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1400px;height:100%;margin:0 auto;padding:120px clamp(20px,4vw,56px) 88px;display:flex;flex-direction:column;justify-content:flex-end;gap:30px;pointer-events:none">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#EDE6D8;text-shadow:0 1px 12px rgba(0,0,0,.6);display:flex;gap:12px;align-items:center"><span style="width:36px;height:1px;background:#C9A96E"></span>Brickell · Edgewater · Downtown · Key Biscayne</div>
+    <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(60px,9.4vw,156px);line-height:.9;letter-spacing:-.025em;max-width:1100px;text-wrap:balance">Miami real estate, <em style="color:#C9A96E">made simple.</em></h1>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+      <p style="margin:0;max-width:440px;font-size:18px;font-weight:300;line-height:1.6;color:#D6CFC1">Bilingual guidance for buyers, renters and investors — more than a decade inside Miami's most sought-after neighborhoods.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;pointer-events:auto">
+        <a href="#inquiry" style="background:#C9A96E;color:#0B0D0C;padding:17px 30px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:.04em" style-hover="background:#EDE6D8;color:#0B0D0C">Find my place →</a>
+        <a href="#help" style="border:1px solid rgba(237,230,216,.5);color:#EDE6D8;padding:17px 30px;border-radius:999px;font-weight:500;font-size:14px;letter-spacing:.04em;backdrop-filter:blur(6px)" style-hover="border-color:#C9A96E;color:#C9A96E">I own a property</a>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ heroSplit }}" hint-placeholder-val="{{ false }}">
+<section id="top" style="max-width:1400px;margin:0 auto;padding:150px clamp(20px,4vw,56px) 56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(32px,5vw,72px);align-items:end">
+  <div style="display:flex;flex-direction:column;gap:32px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;display:flex;gap:12px;align-items:center"><span style="width:36px;height:1px;background:#C9A96E"></span>Miami · EN / ES · Since 2016</div>
+    <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(56px,8.4vw,128px);line-height:.92;letter-spacing:-.03em;text-wrap:balance">Miami real estate, <em style="color:#C9A96E">made simple.</em></h1>
+    <p style="margin:0;max-width:440px;font-size:18px;font-weight:300;line-height:1.6;color:#D6CFC1">Bilingual guidance for buyers, renters and investors — more than a decade inside Miami's most sought-after neighborhoods.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#inquiry" style="background:#C9A96E;color:#0B0D0C;padding:17px 30px;border-radius:999px;font-weight:600;font-size:14px">Find my place →</a>
+      <a href="#help" style="border:1px solid rgba(237,230,216,.5);padding:17px 30px;border-radius:999px;font-weight:500;font-size:14px">I own a property</a>
+    </div>
+  </div>
+  <div style="height:clamp(440px,54vw,680px);border-radius:240px 240px 4px 4px;overflow:hidden">
+    <image-slot id="dk-hero-split" shape="rect" src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" credit="Photo by Muzammil Soorma on Unsplash" credit-href="https://unsplash.com/@muzammilo" placeholder="Miami skyline at night"></image-slot>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ showMarquee }}" hint-placeholder-val="{{ true }}">
+<div style="border-top:1px solid rgba(237,230,216,.1);border-bottom:1px solid rgba(237,230,216,.1);padding:22px 0;overflow:hidden;white-space:nowrap;color:#A39E92">
+  {{ marquee }}
+</div>
+</sc-if>
+
+<section style="max-width:1400px;margin:0 auto;padding:clamp(64px,8vw,112px) clamp(20px,4vw,56px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:1px;background:transparent">
+  <div style="padding:8px 28px 8px 0;display:flex;flex-direction:column;gap:8px;border-right:1px solid rgba(237,230,216,.1)"><span style="font-family:'Instrument Serif',serif;font-size:64px;line-height:1;color:#C9A96E">10+</span><span style="font-size:14px;color:#A39E92;line-height:1.5">years in the Miami market</span></div>
+  <div style="padding:8px 28px;display:flex;flex-direction:column;gap:8px;border-right:1px solid rgba(237,230,216,.1)"><span style="font-family:'Instrument Serif',serif;font-size:64px;line-height:1">2</span><span style="font-size:14px;color:#A39E92;line-height:1.5">languages — English & Español</span></div>
+  <div style="padding:8px 28px;display:flex;flex-direction:column;gap:8px;border-right:1px solid rgba(237,230,216,.1)"><span style="font-family:'Instrument Serif',serif;font-size:64px;line-height:1">4</span><span style="font-size:14px;color:#A39E92;line-height:1.5">neighborhoods, known block by block</span></div>
+  <div style="padding:8px 28px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Instrument Serif',serif;font-size:64px;line-height:1;font-style:italic">1</span><span style="font-size:14px;color:#A39E92;line-height:1.5">point of contact, start to close</span></div>
+</section>
+
+<section id="help" style="max-width:1400px;margin:0 auto;padding:clamp(72px,9vw,136px) clamp(20px,4vw,56px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:22px;position:sticky;top:120px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E">How I can help</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:.98;letter-spacing:-.02em">What brings you <em style="color:#C9A96E">here?</em></h2>
+      <p style="margin:0;max-width:380px;font-size:17px;font-weight:300;line-height:1.6;color:#A39E92">Choose your situation and I'll guide you through everything you need to know.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid rgba(237,230,216,.14)">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+        <div onClick="{{ s.toggle }}" style="cursor:pointer;border-bottom:1px solid rgba(237,230,216,.14);padding:28px 4px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:baseline;gap:22px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:{{ s.numColor }};width:24px">{{ s.n }}</span>
+            <h3 style="margin:0;flex:1;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(28px,3vw,42px);line-height:1.05;color:{{ s.titleColor }}">{{ s.title }}</h3>
+            <span style="width:38px;height:38px;border-radius:50%;border:1px solid {{ s.dotBorder }};display:flex;align-items:center;justify-content:center;font-size:18px;flex:none;background:{{ s.dotBg }};color:{{ s.dotFg }}">{{ s.icon }}</span>
+          </div>
+          <sc-if value="{{ s.open }}" hint-placeholder-val="{{ false }}">
+            <div style="padding-left:46px;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+              <p style="margin:0;max-width:460px;font-size:16px;font-weight:300;line-height:1.6;color:#D6CFC1">{{ s.body }}</p>
+              <a href="#guides" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#C9A96E;border-bottom:1px solid #C9A96E;padding-bottom:3px">{{ s.cta }} →</a>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="position:relative;height:clamp(520px,70vw,820px)">
+  <div style="position:absolute;inset:0"><image-slot id="dk-band-brickell" shape="rect" src="https://images.unsplash.com/photo-1590477330634-ba4fb18090f8?auto=format&amp;fit=crop&amp;w=2400&amp;q=80" credit="Photo by Eric Christian King on Unsplash" credit-href="https://unsplash.com/@ericchristianking" placeholder="Brickell skyline at night"></image-slot></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,13,12,.85) 0%,rgba(11,13,12,.3) 55%,rgba(11,13,12,0) 100%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1400px;height:100%;margin:0 auto;padding:0 clamp(20px,4vw,56px);display:flex;flex-direction:column;justify-content:center;gap:22px;pointer-events:none">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E">Brickell · Edgewater · Downtown</span>
+    <p style="margin:0;max-width:640px;font-family:'Instrument Serif',serif;font-size:clamp(40px,5vw,72px);line-height:1.02;letter-spacing:-.02em">Miami's urban core, <em style="color:#C9A96E">after dark.</em></p>
+    <p style="margin:0;max-width:420px;font-size:17px;font-weight:300;line-height:1.6;color:#D6CFC1">A city that never stops evolving — and a market that rewards knowing it from the inside.</p>
+  </div>
+</section>
+
+<section style="max-width:1400px;margin:0 auto;padding:20px clamp(20px,4vw,56px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
+  <figure style="margin:0;display:flex;flex-direction:column;gap:14px">
+    <div style="height:clamp(360px,36vw,500px);border-radius:4px;overflow:hidden"><image-slot id="dk-arch" shape="rect" src="https://images.unsplash.com/photo-1530686577637-0ccce382b327?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" credit="Photo by Steele Rutherford on Unsplash" credit-href="https://unsplash.com/@rutherford2020" placeholder="Waterfront tower at night"></image-slot></div>
+    <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-family:'Instrument Serif',serif;font-size:24px">Waterfront living</span><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A39E92">Edgewater</span></figcaption>
+  </figure>
+  <figure style="margin:0;display:flex;flex-direction:column;gap:14px;padding-top:clamp(0px,6vw,96px)">
+    <div style="height:clamp(360px,36vw,500px);border-radius:4px;overflow:hidden"><image-slot id="dk-deco" shape="rect" src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" credit="Photo by Ryan Spencer on Unsplash" credit-href="https://unsplash.com/@zombience" placeholder="Art Deco, Miami Beach"></image-slot></div>
+    <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-family:'Instrument Serif',serif;font-size:24px">Art Deco heritage</span><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A39E92">Miami Beach</span></figcaption>
+  </figure>
+  <figure style="margin:0;display:flex;flex-direction:column;gap:14px">
+    <div style="height:clamp(360px,36vw,500px);border-radius:4px;overflow:hidden"><image-slot id="dk-highrise" shape="rect" src="https://images.unsplash.com/photo-1597535973747-951442d5dbc7?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" credit="Photo by Adam Thomas on Unsplash" credit-href="https://unsplash.com/@adamthomas48" placeholder="High-rise architecture"></image-slot></div>
+    <figcaption style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-family:'Instrument Serif',serif;font-size:24px">Architecture & lifestyle</span><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A39E92">Downtown</span></figcaption>
+  </figure>
+</section>
+
+<section id="guides" style="max-width:1400px;margin:0 auto;padding:clamp(72px,9vw,136px) clamp(20px,4vw,56px)">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E">Free resources</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:.98;letter-spacing:-.02em">Download your <em style="color:#C9A96E">guide.</em></h2>
+    </div>
+    <p style="margin:0;max-width:340px;font-size:16px;font-weight:300;line-height:1.6;color:#A39E92">Pick one, leave your email, and it lands straight in your inbox.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:12px">
+    <sc-for list="{{ guides }}" as="g" hint-placeholder-count="5">
+      <button onClick="{{ g.pick }}" style="text-align:left;cursor:pointer;font:inherit;border:1px solid {{ g.border }};background:{{ g.bg }};color:#EDE6D8;border-radius:4px;padding:24px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;transition:background .25s,border-color .25s">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#C9A96E">{{ g.tag }}</span>
+          <span style="font-size:16px;color:#C9A96E">{{ g.mark }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'Instrument Serif',serif;font-size:27px;line-height:1.08">{{ g.title }}</span>
+          <span style="font-size:14px;font-weight:300;line-height:1.55;color:#A39E92">{{ g.body }}</span>
+        </div>
+      </button>
+    </sc-for>
+  </div>
+  <div style="margin-top:12px;border:1px solid rgba(201,169,110,.35);border-radius:4px;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:#131614">
+    <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+      <span style="font-size:15px;color:#A39E92">Sending: <strong style="color:#EDE6D8;font-weight:500">{{ guideTitle }}</strong></span>
+      <form onSubmit="{{ sendGuide }}" style="display:flex;gap:8px;flex:1;max-width:520px;min-width:260px">
+        <input type="email" required="" value="{{ email }}" onChange="{{ setEmail }}" placeholder="your@email.com" style="flex:1;min-width:0;background:transparent;border:1px solid rgba(237,230,216,.22);border-radius:999px;padding:13px 18px;color:#EDE6D8;font:inherit;font-size:15px;outline:none">
+        <button type="submit" style="border:0;cursor:pointer;background:#C9A96E;color:#0B0D0C;border-radius:999px;padding:13px 24px;font:inherit;font-weight:600;font-size:14px">Send it ↗</button>
+      </form>
+    </sc-if>
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <span style="font-family:'Instrument Serif',serif;font-size:24px">On its way — check your inbox for <em style="color:#C9A96E">{{ guideTitle }}</em>.</span>
+      <button onClick="{{ resetGuide }}" style="border:1px solid rgba(237,230,216,.25);background:transparent;color:#EDE6D8;cursor:pointer;border-radius:999px;padding:10px 18px;font:inherit;font-size:14px">Get another</button>
+    </sc-if>
+  </div>
+</section>
+
+<section id="inquiry" style="position:relative;border-top:1px solid rgba(237,230,216,.08)">
+  <div style="position:absolute;inset:0;opacity:.28"><image-slot id="dk-inquiry-bg" shape="rect" src="https://images.unsplash.com/photo-1675223675329-da1d57fba45c?auto=format&amp;fit=crop&amp;w=2400&amp;q=80" credit="Photo by Michael Worden on Unsplash" credit-href="https://unsplash.com/@mike2244" placeholder="City across the water"></image-slot></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,#0B0D0C 0%,rgba(11,13,12,.7) 40%,rgba(11,13,12,.85) 100%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto;padding:clamp(72px,9vw,136px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,96px);pointer-events:none">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E">Rental inquiry</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:.98;letter-spacing:-.02em">Tell me what you're <em style="color:#C9A96E">looking for.</em></h2>
+      <p style="margin:0;max-width:400px;font-size:17px;font-weight:300;line-height:1.6;color:#D6CFC1">I'll reach out with options before they hit the portals.</p>
+      <div style="margin-top:auto;border-top:1px solid rgba(201,169,110,.4);padding-top:22px;display:flex;flex-direction:column;gap:10px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#C9A96E">Your search</span>
+        <span style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1.2;text-wrap:pretty">{{ summary }}</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:30px;pointer-events:auto;background:rgba(19,22,20,.75);backdrop-filter:blur(12px);border:1px solid rgba(237,230,216,.1);border-radius:4px;padding:clamp(24px,3vw,40px)">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A39E92">{{ f.label }}</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pick }}" style="cursor:pointer;font:inherit;font-size:15px;padding:11px 18px;border-radius:999px;border:1px solid {{ o.border }};background:{{ o.bg }};color:{{ o.fg }}">{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ inqOpen }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ sendInquiry }}" style="align-self:flex-start;border:0;cursor:pointer;background:#C9A96E;color:#0B0D0C;border-radius:999px;padding:17px 32px;font:inherit;font-weight:600;font-size:15px" style-hover="background:#EDE6D8">Send inquiry ↗</button>
+      </sc-if>
+      <sc-if value="{{ inqSent }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px solid rgba(201,169,110,.4);border-radius:4px;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+          <span style="font-size:16px">Got it. I'll be in touch within 24 hours.</span>
+          <button onClick="{{ resetInquiry }}" style="border:0;background:transparent;color:#C9A96E;cursor:pointer;font:inherit;font-size:14px;text-decoration:underline">Edit search</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="max-width:1400px;margin:0 auto;padding:clamp(72px,9vw,136px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px);align-items:center">
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div style="aspect-ratio:4/5;border-radius:4px;overflow:hidden;outline:1px solid rgba(201,169,110,.35);outline-offset:10px"><image-slot id="dk-about-portrait" shape="rect" placeholder="Portrait — Lucia Groppa"></image-slot></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:28px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E">About · Agent & Property Manager</span>
+    <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(30px,3.4vw,48px);line-height:1.12;letter-spacing:-.01em;text-wrap:pretty">Before real estate, I was a journalist. I listen carefully, explain the complex simply, and <em style="color:#C9A96E">never oversell what I can't deliver.</em></p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;font-size:16px;font-weight:300;line-height:1.65;color:#A39E92">
+      <p style="margin:0;text-wrap:pretty">I came to Miami from Buenos Aires in 2016 and fell into real estate almost by accident — a generous friend who knew the market inside out took me under her wing. I learned fast, and that foundation has been everything.</p>
+      <p style="margin:0;text-wrap:pretty">Today I work in Brickell, Edgewater, Downtown and Key Biscayne, and manage a select portfolio for owners who want a trusted partner, not just an administrator. I know this market the way you only can when it's also your home.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span style="font-size:13px;padding:7px 14px;border:1px solid rgba(237,230,216,.18);border-radius:999px;color:#D6CFC1">Rentals</span>
+      <span style="font-size:13px;padding:7px 14px;border:1px solid rgba(237,230,216,.18);border-radius:999px;color:#D6CFC1">Sales</span>
+      <span style="font-size:13px;padding:7px 14px;border:1px solid rgba(237,230,216,.18);border-radius:999px;color:#D6CFC1">Property management</span>
+      <span style="font-size:13px;padding:7px 14px;border:1px solid rgba(237,230,216,.18);border-radius:999px;color:#D6CFC1">Latin American market</span>
+      <span style="font-size:13px;padding:7px 14px;border:1px solid rgba(237,230,216,.18);border-radius:999px;color:#D6CFC1">Key Biscayne</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;border-top:1px solid rgba(237,230,216,.12);padding-top:24px;flex-wrap:wrap">
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:36px;color:#C9A96E">Lucia Groppa</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:#A39E92">BUENOS AIRES → MIAMI</span>
+    </div>
+  </div>
+</section>
+
+<section id="blog" style="border-top:1px solid rgba(237,230,216,.08);background:#101211">
+  <div style="max-width:1400px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,4vw,56px)">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E">The journal</span>
+        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:.98;letter-spacing:-.02em">News & <em style="color:#C9A96E">insights.</em></h2>
+      </div>
+      <a href="#blog" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#C9A96E;border-bottom:1px solid #C9A96E;padding-bottom:3px">All articles →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px">
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+        <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:16px;color:#EDE6D8" style-hover="color:#EDE6D8;opacity:.85">
+          <div style="aspect-ratio:4/3;border-radius:4px;overflow:hidden"><image-slot id="{{ p.id }}" shape="rect" src="{{ p.src }}" credit="{{ p.credit }}" credit-href="{{ p.creditHref }}" placeholder="{{ p.ph }}"></image-slot></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#C9A96E">{{ p.tag }}</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:29px;line-height:1.1;text-wrap:balance">{{ p.title }}</span>
+          <span style="font-size:15px;font-weight:300;line-height:1.6;color:#A39E92">{{ p.body }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" style="position:relative;border-top:1px solid rgba(201,169,110,.3)">
+  <div style="max-width:1400px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,4vw,56px) 32px;display:flex;flex-direction:column;gap:72px">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap">
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(64px,10vw,168px);line-height:.88;letter-spacing:-.03em">Let's <em style="color:#C9A96E">talk.</em></h2>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a href="tel:7865539799" style="font-family:'Instrument Serif',serif;font-size:40px">786-553-9799</a>
+        <a href="https://wa.me/17865539799" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#C9A96E;border-bottom:1px solid #C9A96E;align-self:flex-start;padding-bottom:3px">WhatsApp · English & Español</a>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(237,230,216,.1);padding-top:22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7D7970">
+      <span>Lucia Groppa Real Estate · Miami, FL</span>
+      <span>luciagroppa.com</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;full-bleed&quot;,&quot;split&quot;],&quot;default&quot;:&quot;full-bleed&quot;,&quot;tsType&quot;:&quot;'full-bleed'|'split'&quot;},&quot;showMarquee&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { lang: 'EN', open: 0, guide: 1, email: '', sent: false,
+    sel: { zone: 'Brickell', type: 'Condo', beds: '1 bed', budget: '$2,000–$3,000' }, inqSent: false };
+
+  services = [
+    ['I want to rent', "Find the right apartment in Brickell, Edgewater, Downtown or Key Biscayne — no surprises.", 'Rental guide'],
+    ['I want to buy', 'Pre-construction to resale — smart guidance, whether you are living or investing.', "Buyer's guide"],
+    ['Property management', 'Hands-on management for owners who want a trusted partner, not just an administrator.', 'Management guide'],
+    ['I want to sell', 'Honest market analysis — no pressure, just your real options.', "Seller's guide"],
+    ['International buyer', 'LLCs, taxes, financing — buying from abroad, fully guided.', 'International guide'],
+  ];
+  guidesData = [
+    ['Renters', 'The complete guide to renting in Miami', 'Process, costs, and what to watch before signing.'],
+    ['Buyers', 'How to buy a condo in Miami', 'Pre-construction to closing — all you need to know.'],
+    ['Owners', 'Property management in Miami', 'Protect your investment and maximize returns.'],
+    ['Sellers', 'Selling your Miami property', 'Market timing, pricing, finding the right buyer.'],
+    ['International', 'Buying in Miami from abroad', 'LLCs, taxes, financing and the full closing process.'],
+  ];
+  filterData = [
+    ['zone', 'Zone', ['Brickell', 'Edgewater', 'Downtown', 'Key Biscayne', 'Open to all']],
+    ['type', 'Type', ['Condo', 'House', 'Either']],
+    ['beds', 'Bedrooms', ['Studio', '1 bed', '2 beds', '3+ beds']],
+    ['budget', 'Budget', ['Up to $2,000', '$2,000–$3,000', '$3,000–$4,500', '$4,500+']],
+  ];
+
+  marqueeEl() {
+    const items = ['Brickell', 'Edgewater', 'Downtown Miami', 'Key Biscayne', 'Rentals', 'Sales', 'Property management', 'International buyers'];
+    const row = [...items, ...items, ...items, ...items].map((t, i) =>
+      React.createElement('span', { key: i, style: { display: 'inline-flex', alignItems: 'center', gap: 32, marginRight: 32, fontFamily: "'Instrument Serif',serif", fontSize: 30, fontStyle: i % 2 ? 'italic' : 'normal' } },
+        t, React.createElement('span', { style: { width: 5, height: 5, transform: 'rotate(45deg)', background: '#C9A96E', display: 'inline-block' } })));
+    return React.createElement('div', { style: { display: 'inline-block', animation: 'lgMarquee 70s linear infinite' } }, row);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const hero = this.props.heroStyle ?? 'full-bleed';
+    const { zone, type, beds, budget } = s.sel;
+    const bedTxt = beds === 'Studio' ? 'A studio' : beds === '3+ beds' ? 'A 3+ bedroom' : 'A ' + beds.split(' ')[0] + '-bedroom';
+    const u = (id, w) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+    return {
+      heroFull: hero === 'full-bleed',
+      heroSplit: hero === 'split',
+      showMarquee: this.props.showMarquee ?? true,
+      marquee: (this._m ||= this.marqueeEl()),
+      langs: ['EN', 'ES'].map(code => ({ code, bg: s.lang === code ? '#C9A96E' : 'transparent', fg: s.lang === code ? '#0B0D0C' : '#EDE6D8', pick: () => this.setState({ lang: code }) })),
+      services: this.services.map(([title, body, cta], i) => {
+        const open = s.open === i;
+        return { n: String(i + 1).padStart(2, '0'), title, body, cta, open, icon: open ? '−' : '+',
+          numColor: open ? '#C9A96E' : '#7D7970', titleColor: open ? '#EDE6D8' : '#D6CFC1',
+          dotBg: open ? '#C9A96E' : 'transparent', dotFg: open ? '#0B0D0C' : '#EDE6D8', dotBorder: open ? '#C9A96E' : 'rgba(237,230,216,.25)',
+          toggle: () => this.setState({ open: open ? -1 : i }) };
+      }),
+      guides: this.guidesData.map(([tag, title, body], i) => {
+        const on = s.guide === i;
+        return { tag, title, body, mark: on ? '✓' : '↗', bg: on ? '#1A1C19' : '#131614', border: on ? '#C9A96E' : 'rgba(237,230,216,.1)',
+          pick: () => this.setState({ guide: i, sent: false }) };
+      }),
+      guideTitle: this.guidesData[s.guide][1],
+      email: s.email,
+      setEmail: e => this.setState({ email: e.target.value }),
+      sendGuide: e => { e.preventDefault(); this.setState({ sent: true }); },
+      resetGuide: () => this.setState({ sent: false, email: '' }),
+      sent: s.sent, notSent: !s.sent,
+      filters: this.filterData.map(([key, label, opts]) => ({ label, options: opts.map(o => {
+        const on = s.sel[key] === o;
+        return { label: o, bg: on ? '#C9A96E' : 'transparent', fg: on ? '#0B0D0C' : '#EDE6D8', border: on ? '#C9A96E' : 'rgba(237,230,216,.22)',
+          pick: () => this.setState(st => ({ sel: { ...st.sel, [key]: o }, inqSent: false })) };
+      }) })),
+      summary: `${bedTxt} ${type === 'Either' ? 'home' : type.toLowerCase()} in ${zone === 'Open to all' ? 'any neighborhood' : zone}, ${budget.toLowerCase()} a month.`,
+      inqOpen: !s.inqSent, inqSent: s.inqSent,
+      sendInquiry: () => this.setState({ inqSent: true }),
+      resetInquiry: () => this.setState({ inqSent: false }),
+      posts: [
+        { id: 'dk-blog-1', ph: 'Brickell at night', src: u('photo-1652112428671-fceb3e666710', 1200), credit: 'Photo by Valeriia Neganova on Unsplash', creditHref: 'https://unsplash.com/@neganova', tag: 'Market update', title: "Brickell rental market: what's changed in 2026", body: 'Inventory up, prices stabilized — but the best units still move fast.', href: 'https://luciagroppa.com/blog-brickell-rentals-2026.html' },
+        { id: 'dk-blog-2', ph: 'Aerial Miami Beach', src: u('photo-1589083130544-0d6a2926e519', 1200), credit: 'Photo by Antonio Cuellar on Unsplash', creditHref: 'https://unsplash.com/@antoniocphoto', tag: 'For investors', title: 'Pre-construction in Miami: 5 things every Latin American investor asks', body: 'From payment plans to HOA fees — the most common questions, answered honestly.', href: 'https://luciagroppa.com/blog-preconstruction-miami.html' },
+        { id: 'dk-blog-3', ph: 'Palms at sunset', src: u('photo-1605723517503-3cadb5818a0c', 1200), credit: 'Photo by Denys Kostyuchenko on Unsplash', creditHref: 'https://unsplash.com/@dennycshots', tag: 'For renters', title: 'Furnished vs. unfurnished in Edgewater: which makes more sense?', body: 'The cost difference, the flexibility, and when each option works better.', href: 'https://luciagroppa.com/blog-furnished-edgewater.html' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
